@@ -5,7 +5,7 @@ Steps to run this project.
 
 1. Create **_.env_** file in the root directory with following contents:<br />
 **_PIXABAY_URL=https://pixabay.com/api/_**<br />
-**_PIXABAY_KEY=[yourpixaby apikey]_**<br>
+**_PIXABAY_KEY=[yourpixabay apikey]_**<br>
 *See .env.sample for reference.*
 
 2. run **_npm install_**
