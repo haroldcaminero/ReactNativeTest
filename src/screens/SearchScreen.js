@@ -16,7 +16,6 @@ const SearchScreen = ({navigation}) => {
 
     const handleSearch = () => {
         if(searchValue.trim() != ''){
-            console.log(' i am ready');
             navigation.navigate('Results', {searchValue});
         }
     }
