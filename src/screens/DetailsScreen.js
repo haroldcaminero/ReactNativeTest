@@ -19,7 +19,7 @@ const DetailsScreen = ({navigation, route}) => {
     const tags = item.tags.split(",");
     return (
         <View style={[styles.container, styles.inner]}>
-            <Image style={styles.image} source={{uri: item.largeImageURL}}/>
+            <Image style={styles.image} resizeMode={'contain'} source={{uri: item.largeImageURL}}/>
             <Text style={styles.text}>Author: {item.user}</Text>
             <Text style={[styles.text, {fontSize: 14}]}>Tags:</Text>
             <ScrollView horizontal={true}>
