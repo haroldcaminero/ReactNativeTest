@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import {PIXABAY_URL, PIXABAY_KEY} from "@env";
+import { ResultContext } from "../contexts/ResultContext";
 import Helper from '../helpers';
 
 const itemsPerRow = 3;
@@ -22,7 +23,8 @@ const imageHeight = imageWidth;
 
 const ResultsScreen = ({navigation, route}) => {
 
-    const [resultData, setResultData] = React.useState([]);
+    const {resultData, setResultData, setResultItem} = React.useContext(ResultContext);
+
     const [refreshing, setRefreshing] = React.useState(false);
     const [totalResults, setTotalResults] = React.useState(0);
     const [page, setPage] = React.useState(1);
@@ -35,7 +37,6 @@ const ResultsScreen = ({navigation, route}) => {
     }, []);
 
     React.useEffect( () => {
-       console.log('curent page', page);
        loadResult();
     }, [page]);
 
@@ -65,7 +66,9 @@ const ResultsScreen = ({navigation, route}) => {
                 {
                     item.map( (eachItem, itemIdx) => {
                         return (
-                            <TouchableHighlight style={{marginRight: itemIdx == (itemsPerRow - 1) ? 0 : itemGap }} key={eachItem.id + Math.floor(Math.random() * 1000)}>
+                            <TouchableHighlight onPress={ () => {
+                                navigation.push('Details', {item: eachItem});
+                            }} style={{marginRight: itemIdx == (itemsPerRow - 1) ? 0 : itemGap }} key={eachItem.id + Math.floor(Math.random() * 1000)}>
                                 <Image style={{width: imageWidth, height: imageHeight}} resizeMode={'cover'} source={{uri: eachItem.previewURL}}/>
                             </TouchableHighlight>
                         );

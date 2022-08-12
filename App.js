@@ -2,6 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { ResultContext } from './src/contexts/ResultContext';
+
 import SearchScreen from './src/screens/SearchScreen';
 import ResultsScreen from './src/screens/ResultsScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
@@ -19,9 +21,15 @@ const RootStackScreen = () => {
 }
 
 export default App = () => {
+
+    const [resultData, setResultData] = React.useState([]);
+    const [resultItem, setResultItem] = React.useState(null);
+
     return (
         <NavigationContainer>
-            <RootStackScreen />
+            <ResultContext.Provider value={{resultData, setResultData}}>
+                <RootStackScreen />
+            </ResultContext.Provider>
         </NavigationContainer>
     );
 }
