@@ -9,10 +9,15 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import { ResultContext } from "../contexts/ResultContext";
+
 const windowWidth = Dimensions.get('window').width;
 const imageWidth = windowWidth - 40;
 
+
 const DetailsScreen = ({navigation, route}) => {
+
+    const {setResultData} = React.useContext(ResultContext);
 
     const {item} = route.params;
     console.log('item', item);
@@ -26,7 +31,9 @@ const DetailsScreen = ({navigation, route}) => {
                 {tags.map( (tag, idx) => {
                     return (
                         <>
-                            <TouchableOpacity onPress={ () => navigation.push('Results', {searchValue: tag.trim()}) } key={idx} activeOpacity={0.8}>
+                            <TouchableOpacity onPress={ () => { 
+                                setResultData([]);
+                                navigation.push('Results', {searchValue: tag.trim()})} } key={idx} activeOpacity={0.8}>
                                 <Text style={[styles.text, {fontSize: 16, color: 'blue'}]}>{tag.trim()}</Text>
                             </TouchableOpacity> 
                             {idx < (tags.length - 1) ?

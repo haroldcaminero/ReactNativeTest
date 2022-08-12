@@ -23,7 +23,7 @@ const imageHeight = imageWidth;
 
 const ResultsScreen = ({navigation, route}) => {
 
-    const {resultData, setResultData, setResultItem} = React.useContext(ResultContext);
+    const {resultData, setResultData} = React.useContext(ResultContext);
 
     const [refreshing, setRefreshing] = React.useState(false);
     const [totalResults, setTotalResults] = React.useState(0);
@@ -31,10 +31,13 @@ const ResultsScreen = ({navigation, route}) => {
 
     React.useEffect( () => {
         const {searchValue} = route.params;
-        console.log('PIXABAY_URL', PIXABAY_URL);
         navigation.setOptions({
             title: 'Results for "' + searchValue + '"'
         });
+
+        //init resultdata
+        setResultData([]);
+
     }, []);
 
     React.useEffect( () => {

@@ -23,7 +23,6 @@ const RootStackScreen = () => {
 export default App = () => {
 
     const [resultData, setResultData] = React.useState([]);
-    const [resultItem, setResultItem] = React.useState(null);
 
     return (
         <NavigationContainer>
